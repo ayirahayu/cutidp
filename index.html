@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuti Data Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Cuti Data Platform</h1>
+        
+        <!-- Form untuk menambahkan cuti -->
+        <div class="form-container">
+            <h2>Tambah Data Cuti</h2>
+            <form id="cutiForm">
+                <label>Nama Karyawan</label>
+                <input type="text" id="nama" required>
+                
+                <label>Grup</label>
+                <input type="text" id="grup" required>
+                
+                <label>Tanggal Mulai</label>
+                <input type="date" id="tanggalMulai" required>
+                
+                <label>Tanggal Selesai</label>
+                <input type="date" id="tanggalSelesai" required>
+                
+                <label>Alasan Cuti</label>
+                <input type="text" id="alasan" required>
+                
+                <label>Pengganti</label>
+                <input type="text" id="pengganti" required>
+                
+                <button type="submit">Tambah Cuti</button>
+            </form>
+        </div>
+
+       <!-- Tabel daftar cuti -->
+        <div class="table-container">
+            <h2>Daftar Cuti</h2>
+            <table id="cutiTable">
+                <thead>
+                    <tr>
+                        <th>Nama Karyawan</th>
+                        <th>Grup</th>
+                        <th>Tanggal Mulai</th>
+                        <th>Tanggal Selesai</th>
+                        <th>Alasan</th>
+                        <th>Pengganti</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <button onclick="exportToExcel()">Download Excel</button>
+        </div>
+    </div>
+
+    <!-- Script untuk menambahkan logika -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
