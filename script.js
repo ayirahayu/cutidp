@@ -44,20 +44,26 @@ document.getElementById("cutiForm").addEventListener("submit", function (e) {
 
     const cuti = { nama, grup, tanggalMulai, tanggalSelesai, alasan, pengganti };
 
-    if (editIndex === -1) {
-        // Jika tidak dalam mode edit, tambahkan data baru
-        cutiList.push(cuti);
-    } else {
-        // Jika dalam mode edit, perbarui data
-        cutiList[editIndex] = cuti;
-        editIndex = -1;
-        document.getElementById("cutiForm").querySelector("button[type='submit']").textContent = "Tambah Cuti";
-    }
-
-    updateTable();
-    saveToLocalStorage();
-    document.getElementById("cutiForm").reset();
+    // Kirim data ke Google Apps Script Web App
+    fetch('https://script.google.com/macros/s/AKfycbxWdPPd3_Pq72O5NfHPtbmiTm88Yav3qsDo9qhQ6GgP5UIw_cLpIpyn3Bb87s2M7riX/exec', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json' // Pastikan header ini benar
+        },
+        body: JSON.stringify(cuti) // Kirim data dalam format JSON
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("Data berhasil dikirim ke Google Sheets", data);
+        alert("Data berhasil ditambahkan!");
+    })
+    .catch(error => {
+        console.error("Terjadi kesalahan:", error);
+        alert("Gagal mengirim data.");
+    });
 });
+
+
 
 function editCuti(index) {
     const cuti = cutiList[index];
